@@ -1,8 +1,13 @@
 import React from 'react';
+import {Head} from "../common/components/header/Header";
+import {Sidebar} from "../common/components/sidebar/Sidebar";
 function App() {
   return (
-    <div className="App">
-      <h1>Blog guild</h1>
+    <div>
+      <Head/>
+      <div id='main-content'>
+        <Sidebar/>
+      </div>
     </div>
   );
 }
