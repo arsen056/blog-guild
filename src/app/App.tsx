@@ -1,14 +1,14 @@
 import React from 'react';
 import {Head} from "../common/components/header/Header";
 import {Sidebar} from "../common/components/sidebar/Sidebar";
-import {Blogs} from "./pages/blogs/Blogs";
+import {Routs} from "../common/routes/Routes";
 function App() {
   return (
     <div>
       <Head/>
-      <div id='main-content'>
+      <div id='main-content' className={'container main-grid'}>
         <Sidebar/>
-        <Blogs/>
+        <Routs/>
       </div>
     </div>
   );

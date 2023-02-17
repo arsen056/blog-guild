@@ -12,3 +12,7 @@ li {
   max-width: 1280px;
   margin: 0 auto;
 }
+
+.main-grid {
+  display: flex;
+}

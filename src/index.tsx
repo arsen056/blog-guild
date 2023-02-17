@@ -15,5 +15,4 @@ root.render(
   </HashRouter>
 );
 
-
 reportWebVitals();
