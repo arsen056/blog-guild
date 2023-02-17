@@ -1,15 +1,12 @@
 import React from 'react';
 import {Head} from "../common/components/header/Header";
-import {Sidebar} from "../common/components/sidebar/Sidebar";
-import {Routs} from "../common/routes/Routes";
+import {MainPage} from "./pages/mainPage/MainPage";
+
 function App() {
   return (
     <div>
       <Head/>
-      <div id='main-content' className={'container main-grid'}>
-        <Sidebar/>
-        <Routs/>
-      </div>
+      <MainPage/>
     </div>
   );
 }
