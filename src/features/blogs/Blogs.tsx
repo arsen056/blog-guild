@@ -1,5 +1,6 @@
 import React from 'react';
-import {BlogItem} from "../../../common/components/blogItem/BlogItem";
+import {BlogItem} from "common/components/blogItem/BlogItem";
+
 import s from './Blogs.module.css'
 export const Blogs = () => {
   return (

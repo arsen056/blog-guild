@@ -1,6 +1,6 @@
 import React from 'react';
-import {Sidebar} from "../../../common/components/sidebar/Sidebar";
-import {Routs} from "../../../common/routes/Routes";
+import {Sidebar} from "../sidebar/Sidebar";
+import {Routs} from "../../routes/Routes";
 
 export const MainPage = () => {
   return (

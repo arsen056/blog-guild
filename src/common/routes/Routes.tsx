@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {MainContent} from "../components/mainContent/MainContent";
-import {Blogs} from "../../app/pages/blogs/Blogs";
+import {Blogs} from "../../features/blogs/Blogs";
 import {PATHS} from "./PATHS";
 
 export const Routs = () => {
