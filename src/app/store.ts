@@ -2,8 +2,9 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunk from 'redux-thunk'
 import {blogReducer} from "features/blogs/blogsSlice";
 import {appReducer} from "app/appSlice";
+import {postsReducer} from "features/posts/postsSlice";
 
-const rootReducer = combineReducers({app: appReducer, blogs: blogReducer})
+const rootReducer = combineReducers({app: appReducer, blogs: blogReducer, posts: postsReducer})
 
 export type RootStateType = ReturnType<typeof rootReducer>
 
