@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './PostItem.module.css'
 
-export const PostItem = () => {
+type PostItemType = {
+  blogName: string
+  title: string
+  date: string
+}
+
+export const PostItem:FC<PostItemType> = ({blogName, date, title}) => {
   return (
     <li className={s.postItem}>
       <div className={s.card}>
@@ -10,11 +16,11 @@ export const PostItem = () => {
         </div>
         
         <div className={s.content}>
-          <h3 className={s.blogName}>BlogName</h3>
+          <h3 className={s.blogName}>{blogName}</h3>
           
-          <p className={s.title}>Title</p>
+          <p className={s.title}>{title}</p>
 
-          <div className={s.date}>12.12.12</div>
+          <div className={s.date}>{date}</div>
         </div>
       </div>
     </li>
