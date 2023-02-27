@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {BlogType, GetBlogsResponseType} from "./types";
-import {API} from "../../api/api";
+import {API} from "api/api";
 
 const initialState = {
   blogs: [] as BlogType[],

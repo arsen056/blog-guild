@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {BlogItem} from "common/components/blogItem/BlogItem";
 
 import s from './Blogs.module.css'
-import {useAppDispatch} from "../../common/hooks/useAppDispatch";
+import {useAppDispatch} from "common/hooks/useAppDispatch";
 import {fetchBlogs} from "./blogsSlice";
 export const Blogs = () => {
   const dispatch = useAppDispatch()
