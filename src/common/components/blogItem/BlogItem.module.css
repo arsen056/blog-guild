@@ -1,23 +1,8 @@
-.imgWrapper {
-  max-width: 156px;
-  height: 156px;
-  background-color: #fff;
-  border-radius: 50%;
-  border: 1px solid #DEDBDC;
-  margin: 0 auto;
-  overflow: hidden
-}
-
-.imgWrapper img {
-  width: 100%;
-  height: auto;
-}
-
 .blogItem {
   display: flex;
-  align-items: start;
   font-size: 20px;
   column-gap: 1rem;
+  margin: 2rem;
 }
 
 .description {
@@ -31,4 +16,23 @@
 
 .website a {
   color: #3677F7;
+}
+
+.blogInfo {
+  width: 100%;
+}
+
+.imgWrapper {
+  max-width: 156px;
+  height: 156px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #DEDBDC;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.imgWrapper img {
+  width: 100%;
+  height: auto;
 }
