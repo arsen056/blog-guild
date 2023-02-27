@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GetPostsResponseType, PostType} from "features/posts/types";
+import {API} from "api/api";
 
 const initialState = {
   posts: [] as PostType[],
@@ -22,6 +23,18 @@ const postsSlice = createSlice({
     }
   }
 })
+
+export const fetchPosts = createAsyncThunk(
+  'fetchPosts',
+  async (_, {dispatch, getState}) => {
+    try {
+      const res = await API.getPosts()
+      dispatch(setPosts(res.data))
+    } catch (e) {
+
+    }
+  }
+)
 
 export const postsReducer = postsSlice.reducer
 export const {setPosts} = postsSlice.actions
