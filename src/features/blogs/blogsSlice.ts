@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {BlogType, GetBlogsResponseType} from "./types";
 import {API} from "api/api";
+import {RootStateType} from "app/store";
 
 const initialState = {
   blogs: [] as BlogType[],
@@ -8,6 +9,9 @@ const initialState = {
   page: 1 as number,
   pageSize: 0 as number,
   totalCount: 0 as number,
+  searchParams: {
+    searchNameTerm: ''
+  }
 }
 
 const blogsSlice = createSlice({
@@ -20,6 +24,9 @@ const blogsSlice = createSlice({
       state.page = action.payload.page
       state.pageSize = action.payload.pageSize
       state.totalCount = action.payload.totalCount
+    },
+    setSearchName: (state, action: PayloadAction<{ searchName: string }>) => {
+      state.searchParams.searchNameTerm = action.payload.searchName
     }
   }
 })
@@ -27,8 +34,11 @@ const blogsSlice = createSlice({
 export const fetchBlogs = createAsyncThunk(
   'fetchBlogs',
   async (_, {dispatch, getState}) => {
+    const state = getState() as RootStateType
+    const searchNameTerm = state.blogs.searchParams.searchNameTerm
+
     try {
-      const res = await API.getBlogs()
+      const res = await API.getBlogs({searchNameTerm})
       dispatch(setBlogs(res.data))
     } catch (e) {
 
@@ -36,6 +46,5 @@ export const fetchBlogs = createAsyncThunk(
   }
 )
 
-export const {setBlogs} = blogsSlice.actions
+export const {setBlogs, setSearchName} = blogsSlice.actions
 export const blogReducer = blogsSlice.reducer
-
