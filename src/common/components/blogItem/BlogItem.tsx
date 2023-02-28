@@ -23,7 +23,7 @@ export const BlogItem:FC<BlogItemType> = ({name, websiteUrl, description,  isLoa
       <div className={s.blogInfo}>
         <h3 className={s.blogName}>{name}</h3>
         <p className={s.website}>
-          Website: <a href={websiteUrl}>https://www.youtube.com/</a>
+          Website: <a href={websiteUrl}>{websiteUrl}</a>
         </p>
         <p className={s.description}>
           {description}

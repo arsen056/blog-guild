@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {BlogType, GetBlogsResponseType} from "./types";
 import {API} from "api/api";
 import {RootStateType} from "app/store";
+import {setIsLoading} from "app/appSlice";
 
 const initialState = {
   blogs: [] as BlogType[],
@@ -38,11 +39,13 @@ export const fetchBlogs = createAsyncThunk(
     const searchNameTerm = state.blogs.searchParams.searchNameTerm
 
     try {
+      dispatch(setIsLoading({isLoading: true}))
       const res = await API.getBlogs({searchNameTerm})
       dispatch(setBlogs(res.data))
     } catch (e) {
 
     }
+    dispatch(setIsLoading({isLoading: false}))
   }
 )
 
