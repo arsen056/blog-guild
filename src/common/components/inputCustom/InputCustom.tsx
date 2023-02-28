@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ComponentProps, FC, useState, KeyboardEvent } from 'react';
+import React, { ComponentProps, FC, KeyboardEvent } from 'react';
 import s from'./InputCustom.module.css'
 
 type Props = {
@@ -15,13 +15,6 @@ export const InputCustom:FC<Props> = (
     ...rest
   }) => {
 
-  const [value, setValue] = useState<string>('')
-
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value
-    setValue(value)
-  }
-
   const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     e.key === 'Enter' && onEnter && onEnter()
   }
@@ -34,8 +27,6 @@ export const InputCustom:FC<Props> = (
       <input
         type="text"
         className={`${s.input} ${className} ${inputClassName} ${fullWidthClass}`}
-        value={value}
-        onChange={onChangeHandler}
         onKeyDown={onEnterHandler}
         {...rest} />
       <div className={s.errorMessage}>{error ? error : ' '}</div>
