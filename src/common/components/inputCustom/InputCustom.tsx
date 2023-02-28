@@ -20,7 +20,7 @@ export const InputCustom:FC<Props> = (
   }
 
   const inputClassName = error ? s.errorInput : '';
-  const fullWidthClass = fullWidth ? s.fullwidth : ''
+  const fullWidthClass = fullWidth ? s.fullWidthClass : ''
 
   return (
     <div>

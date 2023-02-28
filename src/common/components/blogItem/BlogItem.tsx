@@ -7,17 +7,21 @@ type BlogItemType = {
   description: string
   createdAt: string
   img?: string
+  isLoading?: boolean
 }
 
-export const BlogItem:FC<BlogItemType> = ({name, websiteUrl, description, createdAt}) => {
+export const BlogItem:FC<BlogItemType> = ({name, websiteUrl, description,  isLoading}) => {
+
+  const isLoadingClassName = isLoading ? s.isLoading : ''
+
   return (
-    <div className={s.blogItem}>
+    <div className={`${s.blogItem} ${isLoadingClassName}`}>
       <div id='blog-img' className={s.imgWrapper}>
         <img src={'https://via.placeholder.com/300'} alt="blog"/>
       </div>
 
       <div className={s.blogInfo}>
-        <h3>{name}</h3>
+        <h3 className={s.blogName}>{name}</h3>
         <p className={s.website}>
           Website: <a href={websiteUrl}>https://www.youtube.com/</a>
         </p>

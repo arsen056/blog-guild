@@ -18,5 +18,5 @@ export const SearchInput = () => {
     dispatch(setSearchName({searchName: value}))
   }, [debouncedValue])
 
-  return <InputCustom onChange={onChangeHandler} placeholder='Search'/>;
+  return <InputCustom onChange={onChangeHandler} placeholder='Search' fullWidth={true}/>;
 };
