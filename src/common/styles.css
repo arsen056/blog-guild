@@ -10,6 +10,10 @@ html {
   margin-right: calc(-1 * (100vw - 100%));
 }
 
+body {
+  height: 100%;
+}
+
 li {
   list-style: none;
 }
@@ -21,4 +25,5 @@ li {
 
 .main-grid {
   display: flex;
+  min-height: 100vh;
 }

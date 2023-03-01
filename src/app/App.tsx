@@ -4,10 +4,10 @@ import {MainPage} from "common/components/mainPage/MainPage";
 
 function App() {
   return (
-    <div>
+    <>
       <Head/>
       <MainPage/>
-    </div>
+    </>
   );
 }
 
