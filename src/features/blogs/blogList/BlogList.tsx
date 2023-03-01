@@ -20,7 +20,7 @@ export const BlogList = () => {
   const blogsMapSceletons = [1,2,3,4,5].map(num => {
     return <BlogItem key={num} name='' description='' websiteUrl='' createdAt='' isLoading={true} />
   })
-  console.log(isLoading)
+
   return (
     <div id='blog-list' className={s.blogList}>
       {isLoading ? blogsMapSceletons : blogsMap}

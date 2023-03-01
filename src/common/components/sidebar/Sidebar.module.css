@@ -1,3 +1,27 @@
 .sidebar {
   flex-basis: 20%;
 }
+
+.navItem {
+  position: relative;
+  margin: 20px 0;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navLink.active {
+  color: crimson;
+}
+
+.navLink.active ~ .redLine {
+  content: '';
+  position: absolute;
+
+  width: 2px;
+  height: 25px;
+  background-color: crimson;
+  right: 0;
+}
