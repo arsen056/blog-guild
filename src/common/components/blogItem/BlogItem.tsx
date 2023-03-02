@@ -1,7 +1,10 @@
 import React, {FC} from 'react';
 import s from './BlogItem.module.css'
+import {Link} from "react-router-dom";
+import {PATHS} from "common/routes/PATHS";
 
 type BlogItemType = {
+  blogID: string
   name: string
   websiteUrl: string
   description: string
@@ -10,7 +13,7 @@ type BlogItemType = {
   isLoading?: boolean
 }
 
-export const BlogItem:FC<BlogItemType> = ({name, websiteUrl, description,  isLoading}) => {
+export const BlogItem:FC<BlogItemType> = ({blogID, name, websiteUrl, description,  isLoading}) => {
 
   const isLoadingClassName = isLoading ? s.isLoading : ''
 
@@ -21,7 +24,7 @@ export const BlogItem:FC<BlogItemType> = ({name, websiteUrl, description,  isLoa
       </div>
 
       <div className={s.blogInfo}>
-        <h3 className={s.blogName}>{name}</h3>
+        <Link to={`${PATHS.BLOGS}/${blogID}`}>{name}</Link>
         <p className={s.website}>
           Website: <a href={websiteUrl}>{websiteUrl}</a>
         </p>

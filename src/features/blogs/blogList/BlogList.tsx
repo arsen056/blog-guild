@@ -11,6 +11,7 @@ export const BlogList = () => {
 
   const blogsMap = blogs.map(blog =>
     <BlogItem
+      blogID={blog.id}
       key={blog.id}
       name={blog.name}
       description={blog.description}
@@ -18,7 +19,7 @@ export const BlogList = () => {
       createdAt={blog.createdAt}/>)
 
   const blogsMapSceletons = [1,2,3,4,5].map(num => {
-    return <BlogItem key={num} name='' description='' websiteUrl='' createdAt='' isLoading={true} />
+    return <BlogItem key={num} blogID={String(num)} name='' description='' websiteUrl='' createdAt='' isLoading={true} />
   })
 
   return (

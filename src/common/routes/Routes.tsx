@@ -4,6 +4,7 @@ import {MainContent} from "../components/mainContent/MainContent";
 import {Blogs} from "features/blogs/Blogs";
 import {PATHS} from "./PATHS";
 import {Posts} from "features/posts/Posts";
+import {BlogPage} from "features/blogPage/BlogPage";
 
 export const Routs = () => {
   return (
@@ -11,6 +12,7 @@ export const Routs = () => {
       <Route element={ <MainContent title={'Blogs'}/> }>
         <Route path={'/'} element={ <Navigate to={'blogs'}/> }/>
         <Route path={PATHS.BLOGS} element={ <Blogs/> }/>
+        <Route path={PATHS.BLOG} element={ <BlogPage/> }/>
       </Route>
 
       <Route element={ <MainContent title={'Posts'} /> }>

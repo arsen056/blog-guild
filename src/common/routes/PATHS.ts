@@ -1,4 +1,5 @@
 export const PATHS = {
   BLOGS: '/blogs',
-  POSTS: '/posts'
+  POSTS: '/posts',
+  BLOG: '/blogs/:id'
 }
