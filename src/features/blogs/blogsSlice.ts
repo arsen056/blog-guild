@@ -50,4 +50,4 @@ export const fetchBlogs = createAsyncThunk(
 )
 
 export const {setBlogs, setSearchName} = blogsSlice.actions
-export const blogReducer = blogsSlice.reducer
+export const blogsReducer = blogsSlice.reducer

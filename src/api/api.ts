@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GetBlogsResponseType} from "features/blogs/types";
+import {BlogType, GetBlogsResponseType} from "features/blogs/types";
 import {GetPostsResponseType} from "features/posts/types";
 
 const instance = axios.create({
@@ -12,5 +12,8 @@ export const API = {
   },
   getPosts() {
     return instance.get<GetPostsResponseType>('posts')
+  },
+  getBlog(id: string) {
+    return instance.get<BlogType>(`blogs/${id}`)
   }
 }
