@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import s from './BlogItem.module.css'
 import {Link} from "react-router-dom";
 import {PATHS} from "common/routes/PATHS";
+import blogImg from 'common/assets/blog.webp'
 
 type BlogItemType = {
   blogID: string
@@ -20,7 +21,7 @@ export const BlogItem:FC<BlogItemType> = ({blogID, name, websiteUrl, description
   return (
     <div className={`${s.blogItem} ${isLoadingClassName}`}>
       <div id='blog-img' className={s.imgWrapper}>
-        <img src={'https://via.placeholder.com/300'} alt="blog"/>
+        <img src={blogImg} alt="blog"/>
       </div>
 
       <div className={s.blogInfo}>

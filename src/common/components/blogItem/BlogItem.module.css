@@ -25,16 +25,20 @@
 }
 
 .imgWrapper {
-  max-width: 156px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 156px;
   height: 156px;
-  background-color: #fff;
+
   border-radius: 50%;
   overflow: hidden;
 }
 
 .imgWrapper img {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
+
 }
 
 
