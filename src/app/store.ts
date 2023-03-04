@@ -4,9 +4,10 @@ import {blogsReducer} from "features/blogs/blogsSlice";
 import {appReducer} from "app/appSlice";
 import {postsReducer} from "features/posts/postsSlice";
 import {blogReducer} from "features/blogPage/blogPageSlice";
+import {postPageReducer} from "features/postPage/postPageSlice";
 
 const rootReducer = combineReducers({
-  app: appReducer, blogs: blogsReducer, posts: postsReducer, blog: blogReducer
+  app: appReducer, blogs: blogsReducer, posts: postsReducer, blog: blogReducer, post: postPageReducer
 })
 
 export type RootStateType = ReturnType<typeof rootReducer>
