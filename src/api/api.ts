@@ -14,7 +14,7 @@ export const API = {
     return instance.get<BlogType>(`blogs/${id}`)
   },
   getPostsForBlog(blogID: string) {
-    return instance.get<PostType[]>(`blogs/${blogID}/posts`)
+    return instance.get<GetPostsResponseType>(`blogs/${blogID}/posts`)
   },
   getPosts() {
     return instance.get<GetPostsResponseType>('posts')

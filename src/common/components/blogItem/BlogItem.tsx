@@ -12,27 +12,34 @@ type BlogItemType = {
   createdAt: string
   img?: string
   isLoading?: boolean
+  opened: boolean
 }
 
-export const BlogItem:FC<BlogItemType> = ({blogID, name, websiteUrl, description,  isLoading}) => {
+export const BlogItem: FC<BlogItemType> =
+  ({
+     blogID, name, websiteUrl, description, isLoading, opened,
+   }) => {
 
-  const isLoadingClassName = isLoading ? s.isLoading : ''
+    const isLoadingClassName = isLoading ? s.isLoading : ''
 
-  return (
-    <div className={`${s.blogItem} ${isLoadingClassName}`}>
-      <div id='blog-img' className={s.imgWrapper}>
-        <img src={blogImg} alt="blog"/>
+    const title = opened ? <h3>{name}</h3> : <Link to={`${PATHS.BLOGS}/${blogID}`}>{name}</Link>
+
+    return (
+      <div className={`${s.blogItem} ${isLoadingClassName}`}>
+        <div id='blog-img' className={s.imgWrapper}>
+          <img src={blogImg} alt="blog"/>
+        </div>
+
+        <div className={s.blogInfo}>
+          {title}
+          <p className={s.website}>
+            Website: <a href={websiteUrl}>{websiteUrl}</a>
+          </p>
+          <p className={s.description}>
+            {description}
+          </p>
+          {opened && <button>Show more</button>}
+        </div>
       </div>
-
-      <div className={s.blogInfo}>
-        <Link to={`${PATHS.BLOGS}/${blogID}`}>{name}</Link>
-        <p className={s.website}>
-          Website: <a href={websiteUrl}>{websiteUrl}</a>
-        </p>
-        <p className={s.description}>
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-};
+    );
+  };
