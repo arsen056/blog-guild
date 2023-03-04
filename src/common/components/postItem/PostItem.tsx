@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import s from './PostItem.module.css'
+import {isoFormatDate} from "common/utils/isoFormatDate";
 
 type PostItemType = {
   blogName: string
@@ -8,6 +9,9 @@ type PostItemType = {
 }
 
 export const PostItem:FC<PostItemType> = ({blogName, date, title}) => {
+
+  const dateIso = isoFormatDate(date)
+
   return (
     <li className={s.postItem}>
       <div className={s.card}>
@@ -20,7 +24,7 @@ export const PostItem:FC<PostItemType> = ({blogName, date, title}) => {
           
           <p className={s.title}>{title}</p>
 
-          <div className={s.date}>{date}</div>
+          <div className={s.date}>{dateIso}</div>
         </div>
       </div>
     </li>
