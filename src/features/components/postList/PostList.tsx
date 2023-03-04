@@ -9,7 +9,7 @@ type Props = {
 
 export const PostList:FC<Props> = ({posts}) => {
 
-  const postsMap = posts.map(post => <PostItem key={post.id} blogName={post.blogName} title={post.title} date={post.createdAt}/>)
+  const postsMap = posts.map(post => <PostItem key={post.id} id={post.id} blogName={post.blogName} title={post.title} date={post.createdAt}/>)
 
   return (
     <div className={s.postsWrapper}>
