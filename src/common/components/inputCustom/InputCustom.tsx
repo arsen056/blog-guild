@@ -23,13 +23,13 @@ export const InputCustom:FC<Props> = (
   const fullWidthClass = fullWidth ? s.fullWidthClass : ''
 
   return (
-    <div>
+    <>
       <input
         type="text"
         className={`${s.input} ${className} ${inputClassName} ${fullWidthClass}`}
         onKeyDown={onEnterHandler}
         {...rest} />
       <div className={s.errorMessage}>{error ? error : ' '}</div>
-    </div>
+    </>
   )
 };
