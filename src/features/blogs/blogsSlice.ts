@@ -11,7 +11,8 @@ const initialState = {
   pageSize: 0 as number,
   totalCount: 0 as number,
   searchParams: {
-    searchNameTerm: ''
+    searchNameTerm: '' as string,
+    sortDirection: 'desc' as string
   }
 }
 
@@ -28,7 +29,10 @@ const blogsSlice = createSlice({
     },
     setSearchName: (state, action: PayloadAction<{ searchName: string }>) => {
       state.searchParams.searchNameTerm = action.payload.searchName
-    }
+    },
+    setSortDirection: (state, action: PayloadAction<{ sortDirection: 'asc' | 'desc' }>) => {
+      state.searchParams.sortDirection = action.payload.sortDirection
+    },
   }
 })
 
@@ -36,11 +40,11 @@ export const fetchBlogs = createAsyncThunk(
   'fetchBlogs',
   async (_, {dispatch, getState}) => {
     const state = getState() as RootStateType
-    const searchNameTerm = state.blogs.searchParams.searchNameTerm
+    const searchParams = state.blogs.searchParams
 
     try {
       dispatch(setIsLoading({isLoading: true}))
-      const res = await API.getBlogs({searchNameTerm})
+      const res = await API.getBlogs(searchParams)
       dispatch(setBlogs(res.data))
     } catch (e) {
 
@@ -49,5 +53,5 @@ export const fetchBlogs = createAsyncThunk(
   }
 )
 
-export const {setBlogs, setSearchName} = blogsSlice.actions
+export const {setBlogs, setSearchName, setSortDirection} = blogsSlice.actions
 export const blogsReducer = blogsSlice.reducer

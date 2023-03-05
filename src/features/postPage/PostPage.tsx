@@ -16,7 +16,10 @@ export const PostPage = () => {
 
   return (
     <div>
-      PostPage
+      <span>blog: {post.blogName}</span>
+      <h2>{post.title}</h2>
+      <span>{post.createdAt}</span>
+      <p>{post.shortDescription}</p>
     </div>
   );
 };
