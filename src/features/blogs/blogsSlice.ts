@@ -12,7 +12,7 @@ const initialState = {
   totalCount: 0 as number,
   searchParams: {
     searchNameTerm: '' as string,
-    sortDirection: 'desc' as string
+    sortDirection: 'desc' as 'asc' | 'desc'
   }
 }
 
