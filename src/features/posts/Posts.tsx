@@ -23,7 +23,6 @@ export const Posts = () => {
       </div>
 
       <PostList posts={posts}/>
-
     </div>
   );
 };

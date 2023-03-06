@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import {selectBlog, selectPostsByBlog} from "features/blogPage/selectors";
 import {BlogItem} from "common/components/blogItem/BlogItem";
 import {PostList} from "features/components/postList/PostList";
+import {selectIsLoading} from "app/selectors";
 
 export const BlogPage = () => {
 
@@ -14,27 +15,39 @@ export const BlogPage = () => {
 
   const {id} = useParams()
 
+  const isLoading = useSelector(selectIsLoading)
   const blog = useSelector(selectBlog)
   const posts = useSelector(selectPostsByBlog)
+
+  const blogItem = isLoading
+    ? <BlogItem
+      blogID={''}
+      name={''}
+      websiteUrl={''}
+      description={''}
+      createdAt={''}
+      isLoading={true}
+      opened={false}/>
+    : <BlogItem
+      blogID={blog.id}
+      name={blog.name}
+      websiteUrl={blog.websiteUrl}
+      description={blog.description}
+      createdAt={blog.createdAt}
+      opened={true}
+    />
 
 
   useEffect(() => {
     dispatch(getBlog(id || ''))
-  }, [])
+  },  [])
 
   return (
     <div>
       <div className={s.cover}>Image</div>
-      <BlogItem
-        blogID={blog.id}
-        name={blog.name}
-        websiteUrl={blog.websiteUrl}
-        description={blog.description}
-        createdAt={blog.createdAt}
-        opened={true}
-      />
+      {blogItem}
       <div className={s.line}></div>
-      <PostList posts={posts} />
+      <PostList posts={posts}/>
     </div>
   );
 };

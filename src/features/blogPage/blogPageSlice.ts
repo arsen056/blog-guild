@@ -29,10 +29,11 @@ export const getBlog = createAsyncThunk(
     try {
       dispatch(setIsLoading({isLoading: true}))
       const res = await API.getBlog(id)
+      await dispatch(getPostsForBlog(id))
       dispatch(setBlog({blog: res.data}))
-      dispatch(getPostsForBlog(id))
-    } catch (e) {
 
+    } catch (e) {
+      console.error(e)
     }
     dispatch(setIsLoading({isLoading: false}))
   }
@@ -43,13 +44,12 @@ const getPostsForBlog = createAsyncThunk(
   async (id: string, {dispatch}) => {
 
     try {
-      dispatch(setIsLoading({isLoading: true}))
+
       const res = await API.getPostsForBlog(id)
       dispatch(setPostsForBlog({posts: res.data.items}))
     } catch (e) {
 
     }
-    dispatch(setIsLoading({isLoading: false}))
   }
 )
 
