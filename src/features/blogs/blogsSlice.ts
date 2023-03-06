@@ -54,4 +54,7 @@ export const fetchBlogs = createAsyncThunk(
 )
 
 export const {setBlogs, setSearchName, setSortDirection} = blogsSlice.actions
+
+export type setSortDirectionType = ReturnType<typeof setSortDirection>
+
 export const blogsReducer = blogsSlice.reducer

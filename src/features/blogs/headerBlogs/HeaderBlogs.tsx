@@ -2,6 +2,7 @@ import React from 'react';
 import {SearchInput} from "common/components/searchInput/SearchInput";
 import s from './HeaderBlogs.module.css'
 import {OptionsType, SortSelect} from "features/components/sortSelect/SortSelect";
+import {setSortDirection} from "features/blogs/blogsSlice";
 
 const options = [
   { value: 'desc', label: 'New post first' },
@@ -13,7 +14,7 @@ export const HeaderBlogs = () => {
   return (
     <div className={s.row}>
       <SearchInput />
-      <SortSelect className={s.select} options={options} />
+      <SortSelect className={s.select} options={options} setSortDirection={setSortDirection} />
     </div>
   );
 };

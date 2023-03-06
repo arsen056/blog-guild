@@ -7,7 +7,10 @@ const initialState = {
   pagesCount: 0,
   page: 0,
   pageSize: 0,
-  totalCount: 0,  
+  totalCount: 0,
+  searchParams: {
+    sortDirection: 'desc' as 'asc' | 'desc'
+  }
 }
 
 const postsSlice = createSlice({
@@ -20,13 +23,16 @@ const postsSlice = createSlice({
       state.page = action.payload.page
       state.pageSize = action.payload.pageSize
       state.totalCount = action.payload.totalCount
-    }
+    },
+    setSortDirectionPosts: (state, action: PayloadAction<{ sortDirection: 'asc' | 'desc' }>) => {
+      state.searchParams.sortDirection = action.payload.sortDirection
+    },
   }
 })
 
 export const fetchPosts = createAsyncThunk(
   'fetchPosts',
-  async (_, {dispatch, getState}) => {
+  async (_, {dispatch}) => {
     try {
       const res = await API.getPosts()
       dispatch(setPosts(res.data))
@@ -37,4 +43,4 @@ export const fetchPosts = createAsyncThunk(
 )
 
 export const postsReducer = postsSlice.reducer
-export const {setPosts} = postsSlice.actions
+export const {setPosts, setSortDirectionPosts} = postsSlice.actions
