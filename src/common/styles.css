@@ -32,3 +32,8 @@ li {
   display: flex;
   min-height: 100vh;
 }
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
