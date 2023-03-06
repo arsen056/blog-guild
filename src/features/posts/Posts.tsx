@@ -21,7 +21,6 @@ export const Posts = () => {
       <div className={s.selectWrapper}>
         <SortSelect setSortDirection={setSortDirectionPosts} />
       </div>
-
       <PostList posts={posts}/>
     </div>
   );

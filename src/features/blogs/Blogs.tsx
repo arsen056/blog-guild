@@ -19,7 +19,6 @@ export const Blogs = () => {
   return (
     <div>
       <HeaderBlogs />
-
       <BlogList/>
     </div>
   );

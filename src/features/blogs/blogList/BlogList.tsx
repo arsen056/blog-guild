@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {selectBlogs} from "features/blogs/selectors";
 import {BlogItem} from "common/components/blogItem/BlogItem";
 import {selectIsLoading} from "app/selectors";
+import {Button} from "common/components/button/Button";
 
 export const BlogList = () => {
   const blogs = useSelector(selectBlogs)
@@ -27,6 +28,7 @@ export const BlogList = () => {
   return (
     <div id='blog-list' className={s.blogList}>
       {isLoading ? blogsMapSceletons : blogsMap}
+      <Button>Show more</Button>
     </div>
   );
 };
