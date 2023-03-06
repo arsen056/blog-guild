@@ -4,7 +4,12 @@ import Select, {SingleValue} from "react-select";
 import {setSortDirection} from "features/blogs/blogsSlice";
 import {setSortDirectionPosts} from "features/posts/postsSlice";
 
-export type OptionsType = {
+const options = [
+  { value: 'desc', label: 'New first' },
+  { value: 'asc', label: 'Old first' }
+] as OptionsType[]
+
+type OptionsType = {
   value: 'asc' | 'desc'
   label: string
 }
@@ -12,12 +17,11 @@ export type OptionsType = {
 type sortDirections = ReturnType<typeof setSortDirection> | ReturnType<typeof setSortDirectionPosts>
 
 type Props = {
-  options: OptionsType[]
   className?: string
   setSortDirection: (sort: {sortDirection: 'asc' | 'desc'}) => sortDirections
 }
 
-export const SortSelect:FC<Props> = ({options, className, setSortDirection}) => {
+export const SortSelect:FC<Props> = ({className, setSortDirection}) => {
 
   const dispatch = useAppDispatch();
 

@@ -1,6 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GetPostsResponseType, PostType} from "features/posts/types";
 import {API} from "api/api";
+import {RootStateType} from "app/store";
+import {setIsLoading} from "app/appSlice";
 
 const initialState = {
   posts: [] as PostType[],
@@ -32,13 +34,18 @@ const postsSlice = createSlice({
 
 export const fetchPosts = createAsyncThunk(
   'fetchPosts',
-  async (_, {dispatch}) => {
+  async (_, {dispatch, getState}) => {
+    const state = getState() as RootStateType
+    const sortDirection = state.posts.searchParams.sortDirection
+
     try {
-      const res = await API.getPosts()
+      dispatch(setIsLoading({isLoading: true}))
+      const res = await API.getPosts({sortDirection})
       dispatch(setPosts(res.data))
     } catch (e) {
-
+      console.error(e)
     }
+    dispatch(setIsLoading({isLoading: false}))
   }
 )
 
