@@ -26,10 +26,17 @@
   border-radius: 10px 10px 0 0;
   overflow: hidden;
   max-height: 180px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+
 }
 
 .imgWrapper img {
-  width: 100%;
+  width: auto;
+  height: 100%;
 }
 
 .content {
