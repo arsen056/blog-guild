@@ -12,7 +12,8 @@ const initialState = {
   totalCount: 0 as number,
   searchParams: {
     searchNameTerm: '' as string,
-    sortDirection: 'desc' as 'asc' | 'desc'
+    sortDirection: 'desc' as 'asc' | 'desc',
+    pageSize: 6 as number
   }
 }
 
@@ -32,6 +33,9 @@ const blogsSlice = createSlice({
     },
     setSortDirection: (state, action: PayloadAction<{ sortDirection: 'asc' | 'desc' }>) => {
       state.searchParams.sortDirection = action.payload.sortDirection
+    },
+    setMorePageSize: (state, action: PayloadAction<{ pageSize: number}>) => {
+      state.searchParams.pageSize = action.payload.pageSize
     },
   }
 })
@@ -53,7 +57,7 @@ export const fetchBlogs = createAsyncThunk(
   }
 )
 
-export const {setBlogs, setSearchName, setSortDirection} = blogsSlice.actions
+export const {setBlogs, setSearchName, setSortDirection, setMorePageSize} = blogsSlice.actions
 
 export type setSortDirectionType = ReturnType<typeof setSortDirection>
 

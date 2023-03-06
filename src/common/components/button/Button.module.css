@@ -12,3 +12,9 @@
   background: #1A1718;
   color: #FFFFFF;
 }
+
+.button:disabled {
+  cursor: auto;
+  opacity: 0.7;
+  border-color: #666666;
+}

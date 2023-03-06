@@ -3,7 +3,7 @@ import {useAppDispatch} from "common/hooks/useAppDispatch";
 import {fetchBlogs} from "./blogsSlice";
 import {BlogList} from "features/blogs/blogList/BlogList";
 import {useSelector} from "react-redux";
-import {selectSearchName, selectSortDirection} from "features/blogs/selectors";
+import {selectPageSize, selectSearchName, selectSortDirection} from "features/blogs/selectors";
 import {HeaderBlogs} from "features/blogs/headerBlogs/HeaderBlogs";
 
 export const Blogs = () => {
@@ -11,10 +11,11 @@ export const Blogs = () => {
 
   const searchName = useSelector(selectSearchName)
   const sordDirection = useSelector(selectSortDirection)
+  const pageSize = useSelector(selectPageSize)
 
   useEffect(() => {
     dispatch(fetchBlogs())
-  },[searchName, sordDirection])
+  },[searchName, sordDirection, pageSize])
 
   return (
     <div>
