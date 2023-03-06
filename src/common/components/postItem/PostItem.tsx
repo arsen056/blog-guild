@@ -8,14 +8,17 @@ type PostItemType = {
   blogName: string
   title: string
   date: string
+  isLoading?: boolean
 }
 
-export const PostItem: FC<PostItemType> = ({blogName, id, date, title}) => {
+export const PostItem: FC<PostItemType> = ({blogName, isLoading, id, date, title}) => {
 
   const dateIso = isoFormatDate(date)
 
+  const isLoadingClassName = isLoading ? s.isLoading : ''
+
   return (
-    <li className={s.postItem}>
+    <li className={`${s.postItem} ${isLoadingClassName}` }>
       <Link to={id}>
         <div className={s.card}>
           <div className={s.imgWrapper}>
