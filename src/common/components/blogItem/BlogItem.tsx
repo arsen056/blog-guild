@@ -22,7 +22,7 @@ export const BlogItem: FC<BlogItemType> =
 
     const isLoadingClassName = isLoading ? s.isLoading : ''
 
-    const title = opened ? <h3>{name}</h3> : <Link to={`${PATHS.BLOGS}/${blogID}`}>{name}</Link>
+    const title = opened ? <h3>{name}</h3> : <Link className={s.title} to={`${PATHS.BLOGS}/${blogID}`}>{name}</Link>
 
     return (
       <div className={`${s.blogItem} ${isLoadingClassName}`}>

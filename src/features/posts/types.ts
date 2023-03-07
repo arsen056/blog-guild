@@ -24,3 +24,8 @@ export type LikesInfo = {
   newestLikes: any[];
 }
 
+export type PostParamsType = {
+  id: string,
+  pageSize: number
+}
+

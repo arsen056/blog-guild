@@ -40,6 +40,14 @@
   width: auto;
 }
 
+.title {
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+.title:hover {
+  color: #737067;
+}
 
 /* TODO: Refactor */
 .blogItem.isLoading .imgWrapper {

@@ -2,13 +2,14 @@ import React, {useEffect} from 'react';
 import s from './BlogPage.module.css'
 import {useParams} from "react-router-dom";
 import {useAppDispatch} from "common/hooks/useAppDispatch";
-import {getBlog, getPostsForBlog} from "features/blogPage/blogPageSlice";
+import {getBlog} from "features/blogPage/blogPageSlice";
 import {useSelector} from "react-redux";
-import {selectBlog, selectPostsByBlog} from "features/blogPage/selectors";
+import {selectBlog} from "features/blogPage/selectors";
 import {BlogItem} from "common/components/blogItem/BlogItem";
 import {PostList} from "features/components/postList/PostList";
 import {selectIsLoading} from "app/selectors";
-import {selectPageSize} from "features/postPage/selectors";
+import {fetchPostsForBlog} from "features/posts/postsSlice";
+import {selectPageSize, selectPosts} from "features/posts/selectors";
 
 export const BlogPage = () => {
 
@@ -18,7 +19,7 @@ export const BlogPage = () => {
 
   const isLoading = useSelector(selectIsLoading)
   const blog = useSelector(selectBlog)
-  const posts = useSelector(selectPostsByBlog)
+  const posts = useSelector(selectPosts)
   const pageSize = useSelector(selectPageSize)
 
   const blogItem = isLoading
@@ -42,12 +43,12 @@ export const BlogPage = () => {
   useEffect(() => {
     if (id) {
       dispatch(getBlog(id))
-      dispatch(getPostsForBlog({id, pageSize: 6}))
+      dispatch(fetchPostsForBlog({id, pageSize: 6}))
     }
   },  [])
 
   const showMore = () => {
-    if (id) dispatch(getPostsForBlog({id, pageSize: pageSize + 3}))
+    if (id) dispatch(fetchPostsForBlog({id, pageSize: pageSize + 3}))
   }
 
   return (

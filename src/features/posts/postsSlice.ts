@@ -1,8 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {GetPostsResponseType, PostType} from "features/posts/types";
+import {GetPostsResponseType, PostParamsType, PostType} from "features/posts/types";
 import {API} from "api/api";
 import {RootStateType} from "app/store";
-import {setIsLoading} from "app/appSlice";
 
 const initialState = {
   items: [] as PostType[],
@@ -12,7 +11,8 @@ const initialState = {
   totalCount: 0,
   searchParams: {
     sortDirection: 'desc' as 'asc' | 'desc'
-  }
+  },
+  isLoadingPosts: false
 }
 
 const postsSlice = createSlice({
@@ -32,6 +32,9 @@ const postsSlice = createSlice({
     showMorePosts: (state, action: PayloadAction<{ pageSize: number }>) => {
       state.pageSize = action.payload.pageSize
     },
+    setIsLoadingPosts: (state, action: PayloadAction<{ isLoading: boolean }>) => {
+      state.isLoadingPosts = action.payload.isLoading
+    },
   }
 })
 
@@ -41,18 +44,35 @@ export const fetchPosts = createAsyncThunk(
     const state = getState() as RootStateType
     const sortDirection = state.posts.searchParams.sortDirection
     const pageSize = state.posts.pageSize
-    console.log(pageSize)
+
     try {
 
-      dispatch(setIsLoading({isLoading: true}))
+      dispatch(setIsLoadingPosts({isLoading: true}))
       const res = await API.getPosts({sortDirection, pageSize})
       dispatch(setPosts(res.data))
     } catch (e) {
       console.error(e)
     }
-    dispatch(setIsLoading({isLoading: false}))
+    dispatch(setIsLoadingPosts({isLoading: false}))
+  }
+)
+
+export const fetchPostsForBlog = createAsyncThunk(
+  'getPostsForBlog',
+  async (params: PostParamsType,  {dispatch}) => {
+
+    const {id, pageSize} = params
+
+    try {
+      dispatch(setIsLoadingPosts({isLoading: true}))
+      const res = await API.getPostsForBlog(id, {pageSize})
+      dispatch(setPosts(res.data))
+    } catch (e) {
+      console.error(e)
+    }
+    dispatch(setIsLoadingPosts({isLoading: false}))
   }
 )
 
 export const postsReducer = postsSlice.reducer
-export const {setPosts, setSortDirectionPosts, showMorePosts} = postsSlice.actions
+export const {setPosts, setSortDirectionPosts, showMorePosts, setIsLoadingPosts} = postsSlice.actions
