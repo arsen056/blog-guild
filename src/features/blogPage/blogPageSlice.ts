@@ -2,11 +2,17 @@ import {BlogType } from "features/blogs/types";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {API} from "api/api";
 import {setIsLoading} from "app/appSlice";
-import {PostType} from "features/posts/types";
+import {GetPostsResponseType, PostType} from "features/posts/types";
 
 const initialState = {
   blog: {} as BlogType,
-  posts: [] as PostType[],
+  posts: {
+    items: [] as PostType[],
+    pagesCount: 0 as number,
+    page: 0 as number,
+    pageSize: 0 as number,
+    totalCount: 0 as number,
+  },
 }
 
 const blogSlice = createSlice({
@@ -16,8 +22,12 @@ const blogSlice = createSlice({
     setBlog: (state, action: PayloadAction<{blog: BlogType}>) => {
       state.blog = action.payload.blog
     },
-    setPostsForBlog: (state, action: PayloadAction<{posts: PostType[]}>) => {
-      state.posts = action.payload.posts
+    setPostsForBlog: (state, action: PayloadAction<GetPostsResponseType>) => {
+      state.posts.items = action.payload.items
+      state.posts.pagesCount = action.payload.pagesCount
+      state.posts.page = action.payload.page
+      state.posts.pageSize = action.payload.pageSize
+      state.posts.totalCount = action.payload.totalCount
     }
   }
 })
@@ -29,9 +39,7 @@ export const getBlog = createAsyncThunk(
     try {
       dispatch(setIsLoading({isLoading: true}))
       const res = await API.getBlog(id)
-      await dispatch(getPostsForBlog(id))
       dispatch(setBlog({blog: res.data}))
-
     } catch (e) {
       console.error(e)
     }
@@ -39,17 +47,25 @@ export const getBlog = createAsyncThunk(
   }
 )
 
-const getPostsForBlog = createAsyncThunk(
+type PostParamsType = {
+  id: string,
+  pageSize: number
+}
+
+export const getPostsForBlog = createAsyncThunk(
   'getPostsForBlog',
-  async (id: string, {dispatch}) => {
+  async (params: PostParamsType,  {dispatch}) => {
+
+    const {id, pageSize} = params
 
     try {
-
-      const res = await API.getPostsForBlog(id)
-      dispatch(setPostsForBlog({posts: res.data.items}))
+      dispatch(setIsLoading({isLoading: true}))
+      const res = await API.getPostsForBlog(id, {pageSize})
+      dispatch(setPostsForBlog(res.data))
     } catch (e) {
 
     }
+    dispatch(setIsLoading({isLoading: false}))
   }
 )
 

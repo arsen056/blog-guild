@@ -17,16 +17,14 @@ export const Posts = () => {
     dispatch(fetchPosts())
   }, [sortDirection, pageSize])
 
-  const showMore = () => {
-    dispatch(showMorePosts({pageSize: pageSize + 6}))
-  }
+  const showMore = () => dispatch(showMorePosts({pageSize: pageSize + 3}))
 
   return (
     <div>
       <div className={s.selectWrapper}>
         <SortSelect setSortDirection={setSortDirectionPosts} />
       </div>
-      <PostList posts={posts} showMore={showMore}/>
+      <PostList posts={posts} showMore={showMore} />
     </div>
   );
 };

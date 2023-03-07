@@ -5,7 +5,7 @@ import {RootStateType} from "app/store";
 import {setIsLoading} from "app/appSlice";
 
 const initialState = {
-  posts: [] as PostType[],
+  items: [] as PostType[],
   pagesCount: 0,
   page: 0,
   pageSize: 6,
@@ -20,7 +20,7 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     setPosts: (state, action: PayloadAction<GetPostsResponseType>) => {
-      state.posts = action.payload.items
+      state.items = action.payload.items
       state.pagesCount = action.payload.pagesCount
       state.page = action.payload.page
       state.pageSize = action.payload.pageSize
