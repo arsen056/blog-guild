@@ -47,7 +47,7 @@ export const BlogPage = () => {
       <div className={s.cover}>Image</div>
       {blogItem}
       <div className={s.line}></div>
-      <PostList posts={posts}/>
+      <PostList posts={posts} showMore={() => {}}/>
     </div>
   );
 };

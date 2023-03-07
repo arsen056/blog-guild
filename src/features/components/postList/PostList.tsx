@@ -5,19 +5,16 @@ import {PostType} from "features/posts/types";
 import {useSelector} from "react-redux";
 import {selectIsLoading} from "app/selectors";
 import {Button} from "common/components/button/Button";
-import {selectPage, selectPagesCount, selectPageSize} from "features/posts/selectors";
-import {useAppDispatch} from "common/hooks/useAppDispatch";
-import {showMorePosts} from "features/posts/postsSlice";
+import { selectPage, selectPagesCount } from "features/posts/selectors";
 
 type Props = {
   posts: PostType[]
+  showMore: () => void
 }
 
-export const PostList: FC<Props> = ({posts}) => {
-  const dispatch = useAppDispatch()
-
+export const PostList: FC<Props> = ({posts, showMore}) => {
   const isLoading = useSelector(selectIsLoading)
-  const pageSize = useSelector(selectPageSize)
+
   const page = useSelector(selectPage)
   const pagesCount = useSelector(selectPagesCount)
 
@@ -29,9 +26,7 @@ export const PostList: FC<Props> = ({posts}) => {
     return <PostItem key={p} id={''} blogName={''} title={''} date={''} isLoading={true}/>
   })
 
-  const showMore = () => {
-    dispatch(showMorePosts({pageSize: pageSize + 6}))
-  }
+  const showMoreHandler = () => showMore()
 
   return (
     <>
@@ -39,7 +34,7 @@ export const PostList: FC<Props> = ({posts}) => {
         {isLoading ? sceletons : postsMap}
       </div>
       <div className='centered'>
-        <Button disabled={page === pagesCount} onClick={showMore}>Show more</Button>
+        <Button disabled={page === pagesCount} onClick={showMoreHandler}>Show more</Button>
       </div>
     </>
   );

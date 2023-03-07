@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch} from "common/hooks/useAppDispatch";
-import {fetchPosts, setSortDirectionPosts} from "features/posts/postsSlice";
+import {fetchPosts, setSortDirectionPosts, showMorePosts} from "features/posts/postsSlice";
 import {PostList} from "features/components/postList/PostList";
 import {useSelector} from "react-redux";
 import {selectPageSize, selectPosts, selectSortDirectionPosts} from "features/posts/selectors";
@@ -12,16 +12,21 @@ export const Posts = () => {
   const posts = useSelector(selectPosts)
   const sortDirection = useSelector(selectSortDirectionPosts)
   const pageSize = useSelector(selectPageSize)
+
   useEffect(() => {
     dispatch(fetchPosts())
   }, [sortDirection, pageSize])
+
+  const showMore = () => {
+    dispatch(showMorePosts({pageSize: pageSize + 6}))
+  }
 
   return (
     <div>
       <div className={s.selectWrapper}>
         <SortSelect setSortDirection={setSortDirectionPosts} />
       </div>
-      <PostList posts={posts}/>
+      <PostList posts={posts} showMore={showMore}/>
     </div>
   );
 };
